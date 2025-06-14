@@ -7,10 +7,8 @@ import typing as t
 import fire
 import os
 
-
 def login_to_huggingface(token):
     subprocess.run(["huggingface-cli", "login", "--token", token], check=True)
-
 
 # stolen from langchain
 def concatenate_rows(message: dict, title: str) -> t.Optional[dict]:
@@ -19,7 +17,12 @@ def concatenate_rows(message: dict, title: str) -> t.Optional[dict]:
 
     sender = message["author"]["role"] if message["author"] else "unknown"
 
-    if "parts" not in message["content"]:
+    # დამატებული დაცვა parts-ზე!
+    if (
+        "content" not in message
+        or "parts" not in message["content"]
+        or not message["content"]["parts"]
+    ):
         return None
 
     metadata = message.get("metadata", {})
@@ -27,9 +30,7 @@ def concatenate_rows(message: dict, title: str) -> t.Optional[dict]:
 
     if is_user_system_message is True:
         user_about_message = metadata["user_context_message_data"]["about_user_message"]
-        about_model_message = metadata["user_context_message_data"][
-            "about_model_message"
-        ]
+        about_model_message = metadata["user_context_message_data"]["about_model_message"]
         total_system_message = f"ABOUT YOU:\n{about_model_message}\n\nABOUT YOUR USER:\n{user_about_message}\n\nFIRST MESSAGE FROM THE USER:\n\n"
         return {"sender": "system", "text": total_system_message}
 
@@ -39,7 +40,6 @@ def concatenate_rows(message: dict, title: str) -> t.Optional[dict]:
         return None
 
     return {"sender": sender, "text": text}
-
 
 def load_documents(data: dict) -> list[list[dict]]:
     documents = []
@@ -54,7 +54,6 @@ def load_documents(data: dict) -> list[list[dict]]:
         documents.append(conversation)
 
     return documents
-
 
 def format_conversation(conversation: list[dict]) -> str:
     bos_token = "<s>"
@@ -83,7 +82,6 @@ def format_conversation(conversation: list[dict]) -> str:
 
     return prompt
 
-
 def format_and_push(
     documents: list[list[dict]],
     hf_dataset_name: str,
@@ -91,12 +89,6 @@ def format_and_push(
     dataset_file_name = "dataset.jsonl"
     dataset = [{"text": format_conversation(c)} for c in documents]
     print(f"Formatted {len(dataset)} conversations")
-
-    # random.seed(42)
-    # to_preview = random.sample(dataset, 1)
-    # for d in to_preview:
-    #     print(d["text"])
-    #     print("-" * 50)
 
     # save to jsonl
     with open(dataset_file_name, "w") as f:
@@ -126,9 +118,7 @@ def format_and_push(
 
     os.remove(dataset_file_name)
 
-
 # format: <s>[INST] System Prompt + Instruction [/INST] Model answer</s>[INST] Follow-up instruction [/INST]
-
 
 def main(export_file_name: str, hf_dataset_name: str, hf_token: str):
     data = json.load(open(export_file_name))
@@ -145,7 +135,6 @@ def main(export_file_name: str, hf_dataset_name: str, hf_token: str):
         hf_dataset_name=hf_dataset_name,
     )
     print(f"Pushed dataset to https://huggingface.co/datasets/{hf_dataset_name}")
-
 
 # lol, if you end up here email me: me at duarteocarmo.com :)
 if __name__ == "__main__":
