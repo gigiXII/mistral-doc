@@ -1,4 +1,3 @@
-#Mistral-7b-Instruct-v0.2
 base_model: mistralai/Mistral-7B-Instruct-v0.2
 model_type: MistralForCausalLM
 tokenizer_type: LlamaTokenizer
@@ -9,13 +8,14 @@ load_in_4bit: false
 strict: false
 
 datasets:
-  - path: duarteocarmo/chatgpt-v2
+  - path: gigiXII/my-gpt-data
     type: completion
     field: text
+
 dataset_prepared_path: last_run_prepared
-hub_model_id: duarteocarmo/mistral-doc-instruct-v4
+hub_model_id: gigiXII/cha-mistral-instruct
 val_set_size: 0.05
-output_dir: ./out
+output_dir: ./cha-instruct-out
 
 adapter: lora
 lora_r: 8
@@ -29,13 +29,12 @@ sequence_len: 512
 sample_packing: false
 pad_to_sequence_len: true
 
-wandb_project: mistral-doc-instruct
+wandb_project: cha-orkheli
 wandb_entity:
 wandb_watch:
 wandb_name:
 wandb_log_model: checkpoint
 
-#only 2 epochs because of small dataset
 gradient_accumulation_steps: 3
 micro_batch_size: 2
 num_epochs: 3
@@ -73,3 +72,5 @@ special_tokens:
   bos_token: "<s>"
   eos_token: "</s>"
   unk_token: "<unk>"
+#system_prompt: |
+#  (ჩა-ს system_prompt აქაც შეგიძლია ჩააკოპირო, თუ გინდა yaml-შიც იყოს)
