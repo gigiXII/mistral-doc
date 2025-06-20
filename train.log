@@ -1,0 +1,116 @@
+/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+[2025-06-20 18:54:22,342] [ERROR] [bitsandbytes.cextension.<module>:88] [PID:4129] Could not load bitsandbytes native library: /home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/libbitsandbytes_cpu.so: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 85, in <module>
+    lib = get_native_library()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 72, in get_native_library
+    dll = ct.cdll.LoadLibrary(str(binary_path))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 460, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/libbitsandbytes_cpu.so: cannot open shared object file: No such file or directory
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/torch/cuda/__init__.py:129: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11040). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at /pytorch/c10/cuda/CUDAFunctions.cpp:109.)
+  return torch._C._cuda_getDeviceCount() > 0
+[2025-06-20 18:54:32,437] [ERROR] [bitsandbytes.cextension.<module>:88] [PID:4170] Could not load bitsandbytes native library: /home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/libbitsandbytes_cpu.so: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 85, in <module>
+    lib = get_native_library()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/cextension.py", line 72, in get_native_library
+    dll = ct.cdll.LoadLibrary(str(binary_path))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 460, in LoadLibrary
+    return self._dlltype(name)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: /home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/bitsandbytes/libbitsandbytes_cpu.so: cannot open shared object file: No such file or directory
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/train.py", line 121, in <module>
+    fire.Fire(do_cli)
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/train.py", line 70, in do_cli
+    parsed_cfg = load_cfg(config, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/config.py", line 215, in load_cfg
+    cfg = validate_config(
+          ^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/utils/config/__init__.py", line 294, in validate_config
+    AxolotlConfigWCapabilities(
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/pydantic/main.py", line 214, in __init__
+    validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 2 validation errors for AxolotlConfigWCapabilities
+chat_template.str-enum[ChatTemplate]
+  Input should be 'alpaca', 'chatml', 'mistral_v1', 'mistral_v2v3', 'mistral_v3_tekken', 'mistral_v7_tekken', 'gemma', 'cohere', 'llama3', 'llama3_2_vision', 'llama4', 'phi_3', 'phi_35', 'deepseek_v2', 'deepseek_v3', 'jamba', 'jinja', 'qwen_25', 'qwen3', 'tokenizer_default', 'exaone', 'metharme', 'pixtral', 'llava', 'qwen2_vl', 'gemma3', 'command_a', 'command_a_tool_use', 'command_a_rag' or 'aya' [type=enum, input_value='inst', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/enum
+chat_template.constrained-str
+  String should match pattern '^tokenizer_default_fallback_' [type=string_pattern_mismatch, input_value='inst', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/string_pattern_mismatch
+Traceback (most recent call last):
+  File "/home/yhuman/mistral-doc/venv/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1198, in launch_command
+    simple_launcher(args)
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/accelerate/commands/launch.py", line 785, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/home/yhuman/mistral-doc/venv/bin/python3', '-m', 'axolotl.cli.train', 'configs/config.yml', '--debug-num-examples', '0']' returned non-zero exit status 1.
+[31m[2025-06-20 18:54:34,419] [ERROR] [axolotl.cli.main.train:182] [PID:4129] [RANK:0] Failed to train/fine-tune config 'configs/config.yml': Command '['accelerate', 'launch', '-m', 'axolotl.cli.train', 'configs/config.yml', '--debug-num-examples', '0']' returned non-zero exit status 1.[39m
+Traceback (most recent call last):
+  File "/home/yhuman/mistral-doc/venv/bin/axolotl", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/main.py", line 362, in main
+    cli()
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/click/core.py", line 1442, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/click/core.py", line 1363, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/click/core.py", line 1830, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/click/core.py", line 1226, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/click/core.py", line 794, in invoke
+    return callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/utils.py", line 65, in wrapper
+    return func(*args, **filtered_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/main.py", line 184, in train
+    raise exc
+  File "/home/yhuman/mistral-doc/venv/lib/python3.12/site-packages/axolotl/cli/main.py", line 169, in train
+    subprocess.run(cmd, check=True)  # nosec B603
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['accelerate', 'launch', '-m', 'axolotl.cli.train', 'configs/config.yml', '--debug-num-examples', '0']' returned non-zero exit status 1.
