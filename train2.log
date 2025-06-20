@@ -1,0 +1,147 @@
+The following values were not passed to `accelerate launch` and had defaults used instead:
+	`--num_processes` was set to a value of `1`
+	`--num_machines` was set to a value of `1`
+	`--mixed_precision` was set to a value of `'no'`
+	`--dynamo_backend` was set to a value of `'no'`
+To avoid this warning pass in values for each of the problematic parameters or run `accelerate config`.
+[2025-06-20 21:39:37,610] [INFO] [datasets.<module>:54] [PID:3251] PyTorch version 2.5.1+cu124 available.
+[2025-06-20 21:39:38,680] [INFO] [real_accelerator.py:219:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2025-06-20 21:39:38,971] [INFO] [root.spawn:60] [PID:3251] gcc -pthread -B /root/miniconda3/envs/py3.11/compiler_compat -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /root/miniconda3/envs/py3.11/include -fPIC -O2 -isystem /root/miniconda3/envs/py3.11/include -fPIC -c /tmp/tmphufixmh0/test.c -o /tmp/tmphufixmh0/test.o
+[2025-06-20 21:39:39,004] [INFO] [root.spawn:60] [PID:3251] gcc -pthread -B /root/miniconda3/envs/py3.11/compiler_compat /tmp/tmphufixmh0/test.o -laio -o /tmp/tmphufixmh0/a.out
+[2025-06-20 21:39:39,478] [INFO] [root.spawn:60] [PID:3251] gcc -pthread -B /root/miniconda3/envs/py3.11/compiler_compat -DNDEBUG -fwrapv -O2 -Wall -fPIC -O2 -isystem /root/miniconda3/envs/py3.11/include -fPIC -O2 -isystem /root/miniconda3/envs/py3.11/include -fPIC -c /tmp/tmp3qug9ax5/test.c -o /tmp/tmp3qug9ax5/test.o
+[2025-06-20 21:39:39,511] [INFO] [root.spawn:60] [PID:3251] gcc -pthread -B /root/miniconda3/envs/py3.11/compiler_compat /tmp/tmp3qug9ax5/test.o -L/usr/local/cuda -L/usr/local/cuda/lib64 -lcufile -o /tmp/tmp3qug9ax5/a.out
+/workspace/axolotl/src/axolotl/monkeypatch/relora.py:16: DeprecationWarning: `TorchScript` support for functional optimizers is deprecated and will be removed in a future PyTorch release. Consider using the `torch.compile` optimizer instead.
+  from torch.distributed.optim import ZeroRedundancyOptimizer
+[33m[2025-06-20 21:39:40,198] [WARNING] [axolotl.utils.config.models.input.hint_lora_8bit:1425] [PID:3251] [RANK:0] We recommend setting `load_in_8bit: true` for LORA finetuning[39m
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 406, in hf_raise_for_status
+    response.raise_for_status()
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 403 Client Error: Forbidden for url: https://huggingface.co/mistralai/Mistral-7B-v0.1/resolve/main/config.json
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/transformers/utils/hub.py", line 342, in cached_file
+    resolved_file = hf_hub_download(
+                    ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 860, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 967, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1482, in _raise_on_head_call_error
+    raise head_call_error
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1374, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 1294, in get_hf_file_metadata
+    r = _request_wrapper(
+        ^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 278, in _request_wrapper
+    response = _request_wrapper(
+               ^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/file_download.py", line 302, in _request_wrapper
+    hf_raise_for_status(response)
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/huggingface_hub/utils/_http.py", line 423, in hf_raise_for_status
+    raise _format(GatedRepoError, message, response) from e
+huggingface_hub.errors.GatedRepoError: 403 Client Error. (Request ID: Root=1-6855d51c-2411ed1f5eb2b06d158d7571;0d140536-3ce1-4bc8-b424-ddc085bda4f5)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mistral-7B-v0.1/resolve/main/config.json.
+Access to model mistralai/Mistral-7B-v0.1 is restricted and you are not in the authorized list. Visit https://huggingface.co/mistralai/Mistral-7B-v0.1 to ask for access.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/workspace/axolotl/src/axolotl/cli/train.py", line 116, in <module>
+    fire.Fire(do_cli)
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/fire/core.py", line 135, in Fire
+    component_trace = _Fire(component, args, parsed_flag_args, context, name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/fire/core.py", line 468, in _Fire
+    component, remaining_args = _CallAndUpdateTrace(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/fire/core.py", line 684, in _CallAndUpdateTrace
+    component = fn(*varargs, **kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/axolotl/src/axolotl/cli/train.py", line 65, in do_cli
+    parsed_cfg = load_cfg(config, **kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/axolotl/src/axolotl/cli/config.py", line 211, in load_cfg
+    normalize_config(cfg)
+  File "/workspace/axolotl/src/axolotl/utils/config/__init__.py", line 152, in normalize_config
+    model_config = load_model_config(cfg)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/axolotl/src/axolotl/utils/models.py", line 150, in load_model_config
+    model_config = AutoConfig.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/transformers/models/auto/configuration_auto.py", line 1075, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/transformers/configuration_utils.py", line 594, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/transformers/configuration_utils.py", line 653, in _get_config_dict
+    resolved_config_file = cached_file(
+                           ^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/transformers/utils/hub.py", line 360, in cached_file
+    raise EnvironmentError(
+OSError: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/mistralai/Mistral-7B-v0.1.
+403 Client Error. (Request ID: Root=1-6855d51c-2411ed1f5eb2b06d158d7571;0d140536-3ce1-4bc8-b424-ddc085bda4f5)
+
+Cannot access gated repo for url https://huggingface.co/mistralai/Mistral-7B-v0.1/resolve/main/config.json.
+Access to model mistralai/Mistral-7B-v0.1 is restricted and you are not in the authorized list. Visit https://huggingface.co/mistralai/Mistral-7B-v0.1 to ask for access.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/py3.11/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/accelerate/commands/accelerate_cli.py", line 48, in main
+    args.func(args)
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/accelerate/commands/launch.py", line 1172, in launch_command
+    simple_launcher(args)
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/accelerate/commands/launch.py", line 762, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/root/miniconda3/envs/py3.11/bin/python', '-m', 'axolotl.cli.train', 'configs/config.yml', '--debug-num-examples', '0']' returned non-zero exit status 1.
+[2025-06-20 21:39:42,536] [ERROR] [root.train:171] [PID:2996] Failed to train/fine-tune config 'configs/config.yml': Command '['accelerate', 'launch', '-m', 'axolotl.cli.train', 'configs/config.yml', '--debug-num-examples', '0']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/root/miniconda3/envs/py3.11/bin/axolotl", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/axolotl/src/axolotl/cli/main.py", line 322, in main
+    cli()
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/click/core.py", line 1161, in __call__
+    return self.main(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/click/core.py", line 1082, in main
+    rv = self.invoke(ctx)
+         ^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/click/core.py", line 1697, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/click/core.py", line 1443, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/site-packages/click/core.py", line 788, in invoke
+    return __callback(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/axolotl/src/axolotl/cli/utils.py", line 62, in wrapper
+    return func(*args, **filtered_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/axolotl/src/axolotl/cli/main.py", line 173, in train
+    raise exc
+  File "/workspace/axolotl/src/axolotl/cli/main.py", line 158, in train
+    subprocess.run(cmd, check=True)  # nosec B603
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/envs/py3.11/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['accelerate', 'launch', '-m', 'axolotl.cli.train', 'configs/config.yml', '--debug-num-examples', '0']' returned non-zero exit status 1.
