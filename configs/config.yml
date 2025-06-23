@@ -10,7 +10,7 @@ load_in_4bit: true
 strict: false
 
 datasets:
-  - path: gigiXII/my-gpt-data      # ← შენი dataset-ის ზუსტი მისამართი HuggingFace-ზე
+  - path: gigiXII/test_dialoge     # ← შენი dataset-ის ზუსტი მისამართი HuggingFace-ზე
     type: completion
     field: text
     # OPTIONAL: თუ გინდა იძულებით ჩაამატოს სისტემური პრომპტი, ჩასვამ მერე (ჯერ dataset-შია ჯობს!)
